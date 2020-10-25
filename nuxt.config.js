@@ -18,6 +18,10 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    '~/plugins/auth',
+    '~/plugins/repository',
+    { src: '~/plugins/vuex-cookies', ssr: false },
+    { src: '~/plugins/refresh-token', ssr: false },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -35,8 +39,22 @@ export default {
     '@nuxtjs/axios',
   ],
 
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://blexr.web/',
+    apiUrl: 'http://blexr.web/api/',
+  },
+
+  /*
+  ** Router configuration
+  */
+  router: {
+    middleware: 'isUserLoggedIn',
+  },
+
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    credentials: true,
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {

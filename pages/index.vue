@@ -1,34 +1,26 @@
 <template>
   <div class="container">
     <div>
-      <Logo />
       <h1 class="title">
-        blexr-frontend
+        Blexr
       </h1>
       <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+        <nuxt-link :to="{name: 'auth-login'}" class="button--green" v-if="! isUserLoggedIn">
+          Login
+        </nuxt-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  computed: {
+    isUserLoggedIn() {
+      return !! this.$store.state.auth.token;
+    }
+  },
+}
 </script>
 
 <style>
@@ -57,14 +49,6 @@ export default {}
   font-size: 100px;
   color: #35495e;
   letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
 }
 
 .links {

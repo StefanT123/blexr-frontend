@@ -1,8 +1,19 @@
 <template>
   <div>
+    <custom-nav />
     <Nuxt />
   </div>
 </template>
+
+<script>
+  const CustomNav = () =>  import('~/components/CustomNav.vue');
+
+  export default {
+    components: {
+      CustomNav,
+    },
+  }
+</script>
 
 <style>
 html {
