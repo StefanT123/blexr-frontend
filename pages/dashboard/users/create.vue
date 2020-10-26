@@ -34,7 +34,7 @@
 
     methods: {
       create() {
-        this.$repository.store('employee/create', this.form)
+        this.$repository.store('employee', this.form)
           .then(({employee}) => {
             this.$router.push({name: 'dashboard-users'});
           })

@@ -16,6 +16,10 @@ export const getters = {
   currentUser(state) {
     return state.user;
   },
+
+  isAdmin(state) {
+    return state.user.role === 'admin';
+  }
 }
 
 export const actions = {

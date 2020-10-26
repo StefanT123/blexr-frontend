@@ -31,7 +31,7 @@
       },
 
       isAdmin() {
-        return this.$store.state.user.user.role === 'admin';
+        return this.$store.getters['user/isAdmin'];
       }
     },
 

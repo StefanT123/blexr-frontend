@@ -3,15 +3,11 @@ class Repository {
     this.axios = axios;
   }
 
-  index(url) {
-    return this.axios.$get(url);
-  }
-
   store(url, payload) {
     return this.axios.$post(url, payload)
   }
 
-  show(url) {
+  get(url) {
     return this.axios.$get(url);
   }
 

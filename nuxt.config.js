@@ -20,6 +20,7 @@ export default {
   plugins: [
     '~/plugins/auth',
     '~/plugins/repository',
+    { src: '~/plugins/datepicker', ssr: false },
     { src: '~/plugins/vuex-cookies', ssr: false },
     { src: '~/plugins/refresh-token', ssr: false },
   ],

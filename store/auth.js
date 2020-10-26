@@ -35,7 +35,7 @@ export const actions = {
   },
 
   validateToken({commit}) {
-    return this.$repository.show('validate-token');
+    return this.$repository.get('validate-token');
   },
 
   async refreshToken({dispatch}) {
