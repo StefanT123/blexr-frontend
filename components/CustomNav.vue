@@ -1,26 +1,53 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <nuxt-link class="navbar-brand" :to="'/'">Blexr</nuxt-link>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-      </ul>
+    <div class="collapse navbar-collapse" id="navbarToggle"></div>
+
+    <div class="navbar-right">
+      <div class="navbar-item">
+        <div class="buttons" v-if="! isUserLoggedIn">
+          <nuxt-link :to="{name: 'auth-login'}" class="btn btn-outline-primary btn-lg">
+            Login
+          </nuxt-link>
+        </div>
+
+        <div class="buttons" v-else>
+          <nuxt-link :to="{name: 'dashboard'}" class="btn btn-outline-info btn-lg">
+            Dashboard
+          </nuxt-link>
+          <button class="navbar-right btn btn-danger btn-lg" @click.prevent="logout">Logout</button>
+        </div>
+      </div>
     </div>
   </nav>
 </template>
 
 <script>
   export default {
+    computed: {
+      isUserLoggedIn() {
+        return !! this.$store.state.auth.token;
+      },
 
+      isAdmin() {
+        return this.$store.state.user.user.role === 'admin';
+      }
+    },
+
+    methods: {
+      logout() {
+        this.$store.dispatch('auth/logout')
+          .catch(({response}) => {
+            let message = response.data.message;
+            console.log(message);
+            this.$store.dispatch('auth/signUserOut');
+          })
+          .finally(() => {
+            this.$router.push({name: 'index'});
+          })
+      },
+    }
   }
 </script>
 

@@ -4,23 +4,12 @@
       <h1 class="title">
         Blexr
       </h1>
-      <div class="links">
-        <nuxt-link :to="{name: 'auth-login'}" class="button--green" v-if="! isUserLoggedIn">
-          Login
-        </nuxt-link>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  computed: {
-    isUserLoggedIn() {
-      return !! this.$store.state.auth.token;
-    }
-  },
-}
+export default {}
 </script>
 
 <style>
@@ -49,9 +38,5 @@ export default {
   font-size: 100px;
   color: #35495e;
   letter-spacing: 1px;
-}
-
-.links {
-  padding-top: 15px;
 }
 </style>
