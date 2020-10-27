@@ -9,7 +9,7 @@
   const WorkFromHomeRequestsTable = () => import('~/components/WorkFromHomeRequestsTable.vue');
 
   export default {
-    middleware: 'admin',
+    middleware: 'auth',
 
     layout: 'dashboard',
 

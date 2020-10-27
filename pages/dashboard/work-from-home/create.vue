@@ -4,8 +4,7 @@
 
     <p>Pick a date</p>
     <client-only>
-      <date-picker
-      v-model="date" />
+      <date-picker v-model="date" :disabled-dates="disabledDates"/>
     </client-only>
 
     <div class="my-4">
@@ -27,6 +26,10 @@
       return {
         date: null,
         hours: null,
+        disabledDates: {
+          to: new Date(Date.now()),
+          days: [6, 0],
+        },
       }
     },
 
@@ -38,6 +41,7 @@
         })
         .then(({message}) => {
           console.log(message);
+          this.$router.push({name: 'dashboard-work-from-home'})
         })
         .catch(({response}) => {
           let message = response.data.message;

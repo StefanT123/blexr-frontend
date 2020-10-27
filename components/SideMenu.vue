@@ -10,12 +10,8 @@
           <nuxt-link :to="{name: 'dashboard-licenses'}" class="nav-link">Licenses</nuxt-link>
         </li>
 
-        <li class="nav-item" v-if="isAdmin">
+        <li class="nav-item">
           <nuxt-link :to="{name: 'dashboard-work-from-home'}" class="nav-link">Work from home requests</nuxt-link>
-        </li>
-
-        <li class="nav-item" v-if="! isAdmin">
-          <nuxt-link :to="{name: 'dashboard-work-from-home-create'}" class="nav-link">Work from home request</nuxt-link>
         </li>
       </ul>
     </div>
